@@ -66,9 +66,9 @@ RUN cd AFLplusplus/nyx_mode/packer/packer/linux_x86_64-userspace && \
 # ------ Build Bitcoin Core and the nyx agent ------
 
 # Build Bitcoin Core
-ARG OWNER=bitcoin
+ARG OWNER=davidgumberg
 ARG REPO=bitcoin
-ARG BRANCH=master
+ARG BRANCH=4-30-25-fuzzamoto-flags
 RUN git clone --depth 1 --branch $BRANCH https://github.com/$OWNER/$REPO.git
 
 ENV CC=$PWD/AFLplusplus/afl-clang-fast
@@ -93,7 +93,7 @@ RUN cd bitcoin/ && cmake -B build_fuzz \
       -DAPPEND_CPPFLAGS="-DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION" \
       -DAPPEND_LDFLAGS="-fuse-ld=lld-${LLVM_V}"
 
-RUN cmake --build bitcoin/build_fuzz -j$(nproc) --target bitcoind
+RUN cmake --build bitcoin/build_fuzz -j$(nproc) --target bitcoind --verbose
 
 ENV CC=
 ENV CXX=
