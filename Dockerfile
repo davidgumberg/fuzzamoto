@@ -96,7 +96,7 @@ RUN cd bitcoin/ && cmake -B build_fuzz \
       -DAPPEND_CXXFLAGS="-fcf-protection=none" \
       -DAPPEND_LDFLAGS="-fcf-protection=none"
 
-RUN cmake --build bitcoin/build_fuzz -j$(nproc) --target bitcoind
+RUN cmake --build bitcoin/build_fuzz -j$(nproc) --target bitcoind --verbose
 
 ENV CC=
 ENV CXX=
