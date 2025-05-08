@@ -66,9 +66,9 @@ RUN cd AFLplusplus/nyx_mode/packer/packer/linux_x86_64-userspace && \
 # ------ Build Bitcoin Core and the nyx agent ------
 
 # Build Bitcoin Core
-ARG OWNER=bitcoin
+ARG OWNER=fanquake
 ARG REPO=bitcoin
-ARG BRANCH=master
+ARG BRANCH=extend_asan_sse4
 RUN git clone --depth 1 --branch $BRANCH https://github.com/$OWNER/$REPO.git
 
 ENV CC=$PWD/AFLplusplus/afl-clang-fast
